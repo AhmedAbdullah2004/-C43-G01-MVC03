@@ -1,3 +1,8 @@
+using Demo.DataAccess.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MVC_3.Models;
+
 namespace MVC_3
 {
     public class Program
@@ -8,23 +13,28 @@ namespace MVC_3
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<ApplicationDbContext>(Options =>
+            {
+                Options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days.
+                app.UseHsts();
             }
-            app.UseRouting();
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseRouting();
             app.UseAuthorization();
 
-            app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
