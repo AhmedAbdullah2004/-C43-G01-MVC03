@@ -1,4 +1,6 @@
 using Demo.DataAccess.Data.Contexts;
+using Demo.DataAccess.Repositories;
+using Demo.Databases.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MVC_3.Models;
@@ -12,6 +14,7 @@ namespace MVC_3
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDbContext>(Options =>
             {
