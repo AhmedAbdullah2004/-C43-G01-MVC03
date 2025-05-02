@@ -1,9 +1,7 @@
 using Demo.DataAccess.Data.Contexts;
-using Demo.DataAccess.Repositories;
-using Demo.Databases.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using MVC_3.Models;
+using MVC_Project.DataAccess.Repositories.Classes;
+using MVC_Project.DataAccess.Repositories.Interfaces;
 
 namespace MVC_3
 {
