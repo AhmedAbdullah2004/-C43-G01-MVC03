@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MVC_3.Models;
+using MVC_Project.Presentation.ViewModels;
 
-namespace MVC_3.Controllers
+namespace MVC_Project.Presentation.Controllers
 {
     public class HomeController : Controller
     {
@@ -11,7 +11,8 @@ namespace MVC_3.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
+        } 
+        
 
         public IActionResult Index()
         {
